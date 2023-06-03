@@ -6,7 +6,7 @@ import { useTransition } from 'react';
 
 export default function SearchForm({ searchQuery }: { searchQuery: string }) {
   const router = useRouter();
-  const searchParams = new URLSearchParams(window.location.search);
+  const searchParams = new URLSearchParams(window?.location.search);
   const [isPending, startTransition] = useTransition();
 
   return (
