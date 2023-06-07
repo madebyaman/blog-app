@@ -16,7 +16,7 @@ export default function BlogForm({
         Title
         <input
           type="text"
-          className="rounded focus:ring-gray-500 px-4 py-3 mt-1 focus:border-emerald-500 block w-full sm:text-sm border border-gray-300 text-gray-800 outline-none max-w-sm"
+          className="focus:ring-gray-800 px-4 py-3 mt-1 focus:border-yellow-300 block w-full sm:text-sm border-2 border-transparent text-gray-800 outline-none max-w-sm"
           id="title"
           name="title"
           defaultValue={defaultTitle ?? ''}
@@ -29,7 +29,7 @@ export default function BlogForm({
       />
       <button
         type="submit"
-        className="rounded-md self-start bg-emerald-600 items-center text-white font-medium shadow-sm hover:bg-emerald-500 px-4 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 inline-flex gap-1"
+        className="self-start bg-yellow-300 items-center text-black font-medium hover:bg-yellow-400 px-4 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 inline-flex gap-1"
       >
         <CheckIcon className="h-4 w-4" />
         Save

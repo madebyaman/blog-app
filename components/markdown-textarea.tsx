@@ -14,7 +14,7 @@ export default function MarkdownTextarea({
       <label className="">
         {label}
         <textarea
-          className="border-b-0 rounded-b-none shadow-none rounded focus:ring-gray-500 px-4 py-3 mt-1 block w-full sm:text-sm border border-gray-300 text-gray-800 outline-none"
+          className="border-b-0 focus:border-yellow-300 px-4 py-3 mt-1 block w-full sm:text-sm border-2 border-transparent text-gray-800 outline-none"
           rows={4}
           required
           {...props}

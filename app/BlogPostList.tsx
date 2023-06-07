@@ -34,10 +34,13 @@ export default async function BlogPostList({
       )}
       <ul className="mt-4 space-y-3">
         {blogPosts?.map((post) => (
-          <li key={post.uuid} className="flex flex-col gap-2">
+          <li
+            key={post.uuid}
+            className="flex flex-col gap-2 border-2 border-gray-900 p-2"
+          >
             <Link
               href={`/${post.uuid}`}
-              className="self-start border-b-4 border-emerald-300 hover:bg-emerald-100 transition-all px-1 pt-1 text-lg font-medium"
+              className="self-start border-b-4 border-yellow-300 hover:bg-yellow-100 transition-all px-1 pt-1 text-lg font-medium"
             >
               {post.title}
             </Link>

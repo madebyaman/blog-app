@@ -1,7 +1,7 @@
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import BlogDate from '../BlogDate';
 import Link from 'next/link';
-import { PencilIcon } from '@heroicons/react/24/outline';
+import { PencilIcon } from '@heroicons/react/24/solid';
 
 const blogPost = {
   title: 'My first blog post',
@@ -24,18 +24,18 @@ export default function BlogPost({ params }: { params: { post: string } }) {
         <div className="flex gap-4 mt-4">
           <Link
             href={`/${params.post}/edit`}
-            className="rounded-md bg-emerald-600 items-center text-white font-medium shadow-sm hover:bg-emerald-500 px-4 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 inline-flex gap-1"
+            className="bg-yellow-300 text-black items-center font-medium hover:opacity-70 px-4 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500 inline-flex gap-1"
           >
             <PencilIcon className="w-4 h-4" />
             Edit
           </Link>
-          <button className="text-red-600 hover:text-red-800 outline-none focus:ring-2 focus:ring-inset focus:ring-red-400 rounded-md px-3 py-2">
+          <button className="text-red-600 hover:text-red-800 outline-none focus:ring-2 focus:ring-inset focus:ring-red-400 px-3 py-2">
             Delete
           </button>
         </div>
       </div>
-      <hr className="my-8" />
-      <article className="prose prose-emerald mx-auto">
+      {/* <hr className="my-8 bg-black text-black" /> */}
+      <article className="prose prose-emerald mx-auto border-t mt-8 pt-8 border-black">
         <ReactMarkdown>{blogPost.content}</ReactMarkdown>
       </article>
     </main>

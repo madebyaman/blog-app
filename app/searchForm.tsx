@@ -1,6 +1,7 @@
 'use client';
 
 import LoadingSpinner from '@/components/loading-spinner';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 
@@ -28,15 +29,21 @@ export default function SearchForm({ searchQuery }: { searchQuery: string }) {
               router.replace(newUrl);
             });
           }}
-          className="block w-full rounded-md border-0 py-1.5 outline-none pr-7 pl-3 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 bg-inherit focus:ring-2 focus:ring-emerald-500 sm:leading-6 text-gray-700"
+          className="block w-full py-1.5 outline-none pr-7 pl-3 bg-white placeholder:text-gray-400 bg-inherit focus:ring focus:ring-yellow-300 sm:leading-6 text-gray-800"
           name="search"
           placeholder="Search"
         />
-        {isPending && (
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-            <LoadingSpinner className="text-emerald-600" />
-          </div>
-        )}
+        <div className="absolute inset-y-0 right-0 pr-3 bg-yellow-300 grid place-content-center p-2 text-black">
+          {isPending ? (
+            <div className="pointer-events-none flex items-center">
+              <LoadingSpinner className="" />
+            </div>
+          ) : (
+            <button className="grid place-content-center">
+              <MagnifyingGlassIcon className="h-5 w-5" />
+            </button>
+          )}
+        </div>
       </div>
     </>
   );
