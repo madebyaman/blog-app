@@ -1,4 +1,5 @@
 import BlogForm from '@/components/blog-form';
+import Heading from '@/components/heading';
 
 export default function AddPostPage() {
   async function addPost(data: FormData) {
@@ -8,7 +9,7 @@ export default function AddPostPage() {
 
   return (
     <main>
-      <h1 className="text-4xl font-semibold text-gray-700">Add Post</h1>
+      <Heading>Add Post</Heading>
       <BlogForm onSave={addPost} />
     </main>
   );

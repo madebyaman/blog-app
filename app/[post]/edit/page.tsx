@@ -1,4 +1,5 @@
 import BlogForm from '@/components/blog-form';
+import Heading from '@/components/heading';
 
 export default function EditPostPage() {
   async function savePost(data: FormData) {
@@ -8,7 +9,7 @@ export default function EditPostPage() {
 
   return (
     <main>
-      <h1 className="text-4xl font-semibold text-gray-700">Edit Blog</h1>
+      <Heading>Edit Blog</Heading>
       <BlogForm onSave={savePost} />
     </main>
   );
