@@ -3,16 +3,33 @@ import BlogDate from '../BlogDate';
 import Link from 'next/link';
 import { PencilIcon } from '@heroicons/react/24/solid';
 import Heading from '@/components/heading';
+import { connect } from '@/lib/drizzle';
+import { posts } from '@/db/schema';
+import { eq } from 'drizzle-orm';
 
-const blogPost = {
-  title: 'My first blog post',
-  uuid: 'my-first-blog-post',
-  date: '2023-06-02T17:39:57.311Z',
-  content:
-    "Hello world! This is my first blog post.  I hope you like it. I'm going to write a lot more soon.",
-};
+export async function getBlogPost(id: number) {
+  try {
+    const db = await connect();
+    const post = await db.select().from(posts).where(eq(posts.id, id));
+    return post[0];
+  } catch (err) {
+    console.log(err);
+  }
+}
 
-export default function BlogPost({ params }: { params: { post: string } }) {
+export default async function BlogPost({
+  params,
+}: {
+  params: { post: string };
+}) {
+  const blogPost = await getBlogPost(Number(params.post));
+
+  if (!blogPost) {
+    return (
+      <h1 className="text-4xl font-semibold text-gray-700">Post not found</h1>
+    );
+  }
+
   return (
     <main>
       <div className="flex justify-between items-center gap-2">
@@ -31,10 +48,10 @@ export default function BlogPost({ params }: { params: { post: string } }) {
             Delete
           </button>
         </div>
+        <span className="text-gray-500 text-sm">
+          <i>posted on</i> <BlogDate date={blogPost.created_at} />
+        </span>
       </div>
-      <span className="text-gray-500 text-sm">
-        <i>posted on</i> <BlogDate date={blogPost.date} />
-      </span>
       {/* <hr className="my-8 bg-black text-black" /> */}
       <div className="border-2 border-black p-4 mt-8">
         <article className="prose prose-yellow mx-auto">

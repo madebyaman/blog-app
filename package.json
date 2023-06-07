@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate": "drizzle-kit generate:mysql",
+    "deploy": "node drizzle/migrator.mjs"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
@@ -16,14 +18,22 @@
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
     "date-fns": "^2.30.0",
+    "drizzle-kit": "^0.18.1",
+    "drizzle-orm": "^0.26.5",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
+    "mysql2": "^3.3.3",
     "next": "13.4.4",
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "^8.0.7",
+    "server-only": "^0.0.1",
     "tailwindcss": "3.3.2",
+    "ts-node": "^10.9.1",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "dotenv": "^16.1.3"
   }
 }
