@@ -36,7 +36,7 @@ export default async function BlogPostList({
         {blogPosts?.map((post) => (
           <li
             key={post.uuid}
-            className="flex flex-col gap-2 border-2 border-gray-900 p-2"
+            className="flex flex-col gap-2 border-2 border-black p-2"
           >
             <Link
               href={`/${post.uuid}`}

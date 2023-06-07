@@ -18,10 +18,8 @@ export default function Home({
           <SearchForm searchQuery={searchQuery} />
         </div>
       </div>
-      <Suspense fallback={<LoadingSpinner />}>
-        {/* @ts-expect-error Server component */}
-        <BlogPostList searchQuery={searchQuery} />
-      </Suspense>
+      {/* @ts-expect-error Server component */}
+      <BlogPostList searchQuery={searchQuery} />
     </main>
   );
 }
