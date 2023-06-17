@@ -1,5 +1,7 @@
 import BlogForm from '@/components/blog-form';
 import Heading from '@/components/heading';
+import { posts } from '@/db/schema';
+import db from '@/lib/drizzle';
 
 export default function AddPostPage() {
   async function addPost(data: FormData) {
@@ -11,7 +13,6 @@ export default function AddPostPage() {
     }
 
     try {
-      const db = await connect();
       const post = await db.insert(posts).values({
         title: title,
         content: content,

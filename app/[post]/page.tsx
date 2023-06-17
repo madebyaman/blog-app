@@ -3,13 +3,15 @@ import BlogDate from '../BlogDate';
 import Link from 'next/link';
 import { PencilIcon } from '@heroicons/react/24/solid';
 import Heading from '@/components/heading';
-import { connect } from '@/lib/drizzle';
+import db from '@/lib/drizzle';
 import { posts } from '@/db/schema';
 import { eq } from 'drizzle-orm';
+import { notFound } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
 export async function getBlogPost(id: number) {
+  'use server';
   try {
-    const db = await connect();
     const post = await db.select().from(posts).where(eq(posts.id, id));
     return post[0];
   } catch (err) {
@@ -22,12 +24,29 @@ export default async function BlogPost({
 }: {
   params: { post: string };
 }) {
-  const blogPost = await getBlogPost(Number(params.post));
+  const postId = Number(params.post);
+  if (Number.isNaN(postId)) {
+    return notFound();
+  }
+  console.log('Post id', postId, params.post);
+  const blogPost = await getBlogPost(postId);
 
   if (!blogPost) {
     return (
       <h1 className="text-4xl font-semibold text-gray-700">Post not found</h1>
     );
+  }
+
+  async function deletePost() {
+    'use server';
+    console.log('Deleting post', postId);
+    try {
+      await db.delete(posts).where(eq(posts.id, postId));
+      revalidatePath('/');
+      revalidatePath(`/${postId}`);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (

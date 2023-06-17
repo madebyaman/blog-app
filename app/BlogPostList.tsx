@@ -1,12 +1,11 @@
 import Link from 'next/link';
 import BlogDate from './BlogDate';
-import { connect } from '@/lib/drizzle';
+import db from '@/lib/drizzle';
 import { posts } from '@/db/schema';
 import { like } from 'drizzle-orm';
 
 async function getBlogPosts(searchQuery: string) {
   try {
-    const db = await connect();
     const allPosts = searchQuery
       ? db
           .select()
